@@ -1,0 +1,11 @@
+1. Ingresamos al package.json y configuramos los script para arrancar el servidor con npm run dev y para que el servidor se reinicie solo si hacemos algun cambio, por ejemplo "dev": "nodemon server/index.js", esto solo si hemos instalado nodemon.
+
+2. Para usar import y export configuramos tambien el package.json le agregamos "type":module
+
+3. Estructura de carpetas por parte del Backend
+- src/routes: Carpeta que contiene las rutas de la aplicación.
+- src/controllers: Carpeta donde se encuentran las funciones que se ejecutaran cuando visitemos una URL.
+- src/models: Carpeta donde se encuentran los modelos o tablas de nuestra base de datos, es decir, cómo va a ser estructurada nuestra BD.
+- src/middlewares:  Carpeta que contiene los middlewares, es decir, acceso a información o validaciones antes de llegar a la función correspondiente en controllers, en pocas palabras rutas protegidas.
+- src/schemas: Carpeta que contiene los esquemas o modelos de datos para validar los datos.
+- src/libs:  Carpeta con funcionalidades generales que pueden ser utilizadas en diferentes partes de la aplicación.
