@@ -96,3 +96,24 @@ export const logoutRequest = (req, res) => {
   });
   return res.sendStatus(200);
 };
+
+// Creamos una funcion del perfil
+export const profileRequest = async (req, res) => {
+  // Nos aseguramos que el usuario este autenticado
+  // console.log(req.user);
+
+  // Una ves que esta autenticado hacemos una busqueda de este en la Bd
+  const userFound = await User.findById(req.user.id);
+
+  // Hacemos una validacion
+  if (!userFound) return res.status(401).json({ message: "User not found" });
+
+  // Si todo va bien lo enviamos como json
+  return res.status(200).json({
+    id: userFound._id,
+    username: userFound.username,
+    email: userFound.email,
+    createdAt: userFound.createdAt,
+    updatedAt: userFound.updatedAt,
+  });
+};

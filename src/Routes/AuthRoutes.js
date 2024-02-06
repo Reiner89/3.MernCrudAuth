@@ -5,8 +5,12 @@ import { Router } from "express";
 import {
   loginRequest,
   logoutRequest,
+  profileRequest,
   registerRequest,
 } from "../Controllers/AuthController.js";
+
+// Importamos la funcion que se encargara de proteger las rutas
+import { authRequired } from "../Middlewares/AuthRequired.js";
 
 // Instanciamos el router de express.js
 const router = Router();
@@ -21,6 +25,9 @@ router.post("/api/login", loginRequest);
 
 // Ruta para el logOut
 router.post("/api/logout", logoutRequest);
+
+// Ruta para el perfil
+router.get("/api/profile", authRequired, profileRequest);
 
 // Exportamos la variable router con todas las rutas creadas en ella
 export default router;
