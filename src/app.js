@@ -8,7 +8,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 
 // Importamos nuestro archivo con las rutas
-import authRoutes from "./Routes/AuthRoutes.js";
+import authRoutes from "./Routes/auth.routes.js";
 
 // Importamos las rutas de nuestros tasks
 import taskRoutes from "./Routes/tasks.routes.js";

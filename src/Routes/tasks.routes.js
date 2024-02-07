@@ -12,6 +12,12 @@ import {
 // Validamos que haya un inicio de sesion
 import { authRequired } from "../Middlewares/ValidateToken.js";
 
+// Importamos las validaciones de nuestro formulario
+import { createTaskSchema } from "../Schemas/Task.Schema.js";
+
+//  Importamos la funcion que ejecutara la validacion
+import { validateSchema } from "../Middlewares/Validator.Middleware.js";
+
 const router = Router();
 
 // Ruta para mostrar todos los tasks
@@ -21,7 +27,12 @@ router.get("/api/tasks", authRequired, getTasksRequest);
 router.get("/api/tasks/:id", authRequired, getTaskRequest);
 
 // Ruta para crear un task
-router.post("/api/tasks", authRequired, createTaskRequest);
+router.post(
+  "/api/tasks",
+  authRequired,
+  validateSchema(createTaskSchema),
+  createTaskRequest
+);
 
 // Ruta para actualizar un task
 router.put("/api/tasks/:id", authRequired, updateTaskRequest);

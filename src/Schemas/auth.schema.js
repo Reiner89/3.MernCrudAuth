@@ -4,7 +4,7 @@ import { z } from "zod";
 // Creamos un schema para validar los datos del formulario del Register
 export const registerSchema = z.object({
   username: z.string({
-    required_error: "El nombre de usuario es obligatorio",
+    required_error: "El nombre de usuario es obligatoria",
   }),
   email: z
     .string({
@@ -32,11 +32,7 @@ export const loginSchema = z.object({
     .email({
       message: "Introduce una dirección de correo electrónico válida",
     }),
-  password: z
-    .string({
-      required_error: "La contraseña es obligatoria",
-    })
-    .min(6, {
-      message: "La contraseña debe contener al menos 6 caracteres",
-    }),
+  password: z.string({
+    required_error: "La contraseña es obligatoria",
+  }),
 });

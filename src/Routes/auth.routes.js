@@ -12,16 +12,22 @@ import {
 // Importamos la funcion que se encargara de proteger las rutas
 import { authRequired } from "../Middlewares/ValidateToken.js";
 
+// Importamos las funciones con las validaciones correspondientes para los campos del formulario
+import { registerSchema, loginSchema } from "../Schemas/auth.schema.js";
+
+// Importamos la funcion que ejecutara la validacion de los campos del formulario
+import { validateSchema } from "../Middlewares/Validator.Middleware.js";
+
 // Instanciamos el router de express.js
 const router = Router();
 
 // Creamos las rutas de nuestra aplicacion
 
-// Ruta para registrarnos
-router.post("/api/register", registerRequest);
+// Ruta para registrarnos con su validacion
+router.post("/api/register", validateSchema(registerSchema), registerRequest);
 
-//  Ruta para loguearnos
-router.post("/api/login", loginRequest);
+//  Ruta para loguearnos con su validacion
+router.post("/api/login", validateSchema(loginSchema), loginRequest);
 
 // Ruta para el logOut
 router.post("/api/logout", logoutRequest);
