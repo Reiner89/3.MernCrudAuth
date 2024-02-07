@@ -10,7 +10,7 @@ import {
 } from "../Controllers/AuthController.js";
 
 // Importamos la funcion que se encargara de proteger las rutas
-import { authRequired } from "../Middlewares/AuthRequired.js";
+import { authRequired } from "../Middlewares/ValidateToken.js";
 
 // Instanciamos el router de express.js
 const router = Router();

@@ -10,7 +10,7 @@ import {
 } from "../Controllers/TasksController.js";
 
 // Validamos que haya un inicio de sesion
-import { authRequired } from "../Middlewares/AuthRequired.js";
+import { authRequired } from "../Middlewares/ValidateToken.js";
 
 const router = Router();
 
