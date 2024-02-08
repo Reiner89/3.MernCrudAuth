@@ -7,6 +7,9 @@ import morgan from "morgan";
 // Importamos cookie-parser
 import cookieParser from "cookie-parser";
 
+// Importamos cors
+import cors from "cors";
+
 // Importamos nuestro archivo con las rutas
 import authRoutes from "./Routes/auth.routes.js";
 
@@ -15,6 +18,9 @@ import taskRoutes from "./Routes/tasks.routes.js";
 
 // Creamos una instancia de express
 export const app = express();
+
+// Usamos cors para permitir peticiones desde cualquier puerto
+app.use(cors());
 
 // Configuramos para que nuestra app use morgan
 app.use(morgan("dev"));

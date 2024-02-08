@@ -13,6 +13,12 @@ export const registerRequest = async (req, res) => {
   var { email, password, username } = req.body;
 
   try {
+    // Verificamos si el correo electronico ya existe en la base de datos
+    const userExistEmail = await User.findOne({ email });
+
+    if (userExistEmail)
+      return res.status(400).json(["El correo electronico ya esta en uso"]);
+
     // Encriptamos la contraseña
     const passwordHash = await bcrypt.hash(password, 10);
 
