@@ -5,7 +5,6 @@ import { IconEmail, IconKey } from "../Assets/Icons";
 import { InputsStyle } from "./Components/InputsStyle";
 import { useState } from "react";
 import { useAuth } from "../Context/Auth/AuthProvider";
-import { ToastContainer, toast } from "react-toastify";
 
 export const Login = () => {
   // Estado para el formulario de Login
@@ -32,22 +31,6 @@ export const Login = () => {
     });
   };
 
-  // Función para mostrar notificaciones de Toast
-  const notify = () => {
-    errorsRegister.forEach((error, index) => {
-      toast.error(error, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    });
-  };
-
   return (
     <>
       <div>
@@ -71,11 +54,11 @@ export const Login = () => {
               <h1 className="my-6 text-black text-4xl font-bold">
                 Iniciar Sesión
               </h1>
-              {/* {errorsRegister.map((error, index) => (
+              {errorsRegister.map((error, index) => (
                 <div key={index} className="relative bg-red-500 p-2 my-3">
                   {error}
                 </div>
-              ))} */}
+              ))}
               <form
                 onSubmit={handleSubmit}
                 className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto"
@@ -106,17 +89,9 @@ export const Login = () => {
                   }
                 />
                 <div className="px-4 pb-2 pt-4 my-2">
-                  <Button
-                    type="submit"
-                    className="relative w-full"
-                    onClick={() => {
-                      notify();
-                    }}
-                  >
+                  <Button type="submit" className="relative w-full">
                     Sign In
                   </Button>
-                  {/* Llamo al ToastContainer */}
-                  <ToastContainer />
                 </div>
                 <div className="flex w-full justify-between my-3">
                   <div className="">
