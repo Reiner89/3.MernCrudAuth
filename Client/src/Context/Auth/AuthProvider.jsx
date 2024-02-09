@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react-refresh/only-export-components */
 // Importamos nuestras funciones asyncronas para hacer peticiones a la API
-import { registerUser } from "../../Api/Auth";
+import { registerUser, loginUser } from "../../Api/Auth";
 import { useContext, createContext, useState } from "react";
 
 // Creamos nuestro contexto
@@ -38,16 +40,28 @@ export const AuthProvider = ({ children }) => {
       // Mostramos que el usuario está autenticado
       setIsAuthenticated(true);
     } catch (error) {
-      console.log(error);
-
       // Guardamos los posibles errores en el estado
+      setErrorsRegister(error.response.data);
+    }
+  };
+
+  // Funcion que nos permite realizar el login
+  const login = async (user) => {
+    try {
+      // Enviamos los datos a la API y esperamos una respuesta
+      const response = await loginUser(user);
+
+      // Mostramos en consola la respuesta
+      console.log("Login: ", response);
+    } catch (error) {
+      // Guardamos los errores en el estado
       setErrorsRegister(error.response.data);
     }
   };
 
   return (
     <AuthContext.Provider
-      value={{ signUp, user, isAuthenticated, errorsRegister }}
+      value={{ signUp, login, user, isAuthenticated, errorsRegister }}
     >
       {children}
     </AuthContext.Provider>

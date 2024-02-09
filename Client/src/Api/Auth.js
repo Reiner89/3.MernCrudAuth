@@ -12,3 +12,12 @@ export const registerUser = async (user) => {
   //  Retornamos la respuesta del servidor
   return response;
 };
+
+// Funcion para el logeo de usuarios
+export const loginUser = async (user) => {
+  // Ennviamos una peticion POST a la URL definida con los datos del login
+  const response = await axios.post(url + "/login", user);
+
+  // Retornamos la respuesta del servidor
+  return response;
+};

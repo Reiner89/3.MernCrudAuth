@@ -32,7 +32,11 @@ export const loginSchema = z.object({
     .email({
       message: "Introduce una dirección de correo electrónico válida",
     }),
-  password: z.string({
-    required_error: "La contraseña es obligatoria",
-  }),
+  password: z
+    .string({
+      required_error: "La contraseña es obligatoria",
+    })
+    .min(8, {
+      message: "La contraseña debe tener al menos 8 caracteres",
+    }),
 });

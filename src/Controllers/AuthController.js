@@ -61,17 +61,13 @@ export const loginRequest = async (req, res) => {
     // Buscamos si existe ese correo en la base de datos
     let userLogged = await User.findOne({ email });
     if (!userLogged) {
-      return res.status(400).json({
-        message: "El usuario no se encuentra registrado.",
-      });
+      return res.status(400).json(["El usuario no se encuentra registrado."]);
     }
 
     // Comprobamos la contraseña
     const validPassword = await bcrypt.compare(password, userLogged.password);
     if (!validPassword) {
-      return res.status(401).json({
-        message: "La contraseña es incorrecta.",
-      });
+      return res.status(400).json(["La contraseña es incorrecta."]);
     }
 
     // Creamos un token con el id del usuario

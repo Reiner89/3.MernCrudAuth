@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import { Button, Alert } from "@material-tailwind/react";
 import { IconAlert, IconEmail, IconKey, IconUser } from "../Assets/Icons";
 import { InputsStyle } from "./Components/InputsStyle";
@@ -9,15 +11,15 @@ export const Register = () => {
   // Usamos el contexto de autenticación para acceder a los valores y métodos.
   const { signUp, isAuthenticated, errorsRegister } = useAuth();
 
-  // Estado para la alerta
-  const [open, setOpen] = useState(true);
-
   // Estado para el formulario
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
   });
+
+  // Estado para almacenar la aparicion/desaparicion de la alerta
+  const [alert, setAlert] = useState(true);
 
   // Instanciamos la función navigate() que nos permite navegar por las rutas.
   const navigate = useNavigate();
@@ -32,7 +34,7 @@ export const Register = () => {
     // Evitamos que se recargue la pagina al enviar el formulario
     e.preventDefault();
 
-    // Le mandamos los datos del formulario a nuestro estado
+    // Le mandamos los datos del formulario a nuestra funcion
     signUp(formData);
 
     // Por ultimo limpiamos el formulario
@@ -45,33 +47,8 @@ export const Register = () => {
 
   return (
     <div className="relative">
-      {errorsRegister.map((error, index) => (
-        <div key={index} className="absolute flex flex-col z-50">
-          <div className="">
-            <Alert
-              variant="gradient"
-              open={open}
-              icon={<IconAlert />}
-              action={
-                <Button
-                  variant="text"
-                  color="white"
-                  size="sm"
-                  className="!absolute top-3 right-3"
-                  onClick={() => setOpen(false)}
-                >
-                  Close
-                </Button>
-              }
-            >
-              {error}
-            </Alert>
-          </div>
-        </div>
-      ))}
       <section className="min-h-screen flex items-stretch text-white ">
         <div className="fondo-form lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center">
-          <div className="absolute bg-black opacity-50 inset-0 z-0"></div>
           <div className="w-full px-24 z-10">
             <h1 className="text-4xl font-bold text-left tracking-wide">
               Bienvenido a TailAdmin
@@ -87,6 +64,17 @@ export const Register = () => {
         <div className="lg:w-1/2 w-full flex items-center justify-center text-center md:px-16 px-0 z-0">
           <div className="w-full py-6 z-20">
             <h1 className="my-6 text-black text-4xl font-bold">Registrate</h1>
+            {errorsRegister.map((error, index) => (
+              <div key={index}>
+                <Alert
+                  className="rounded-none border-l-4 border-[#ef4444] bg-[#ef4444]/10 font-medium text-[#ef4444]"
+                  open={alert}
+                  icon={<IconAlert />}
+                >
+                  {error}
+                </Alert>
+              </div>
+            ))}
             <form
               onSubmit={handleSubmit}
               className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto"
@@ -130,7 +118,11 @@ export const Register = () => {
                 }
               />
               <div className="px-4 pb-2 pt-4 my-2">
-                <Button type="submit" className="relative w-full">
+                <Button
+                  type="submit"
+                  className="relative w-full"
+                  onClick={() => setAlert(true)}
+                >
                   Registrarse
                 </Button>
               </div>
