@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // Importamos nuestro contexto
 import { AuthProvider } from "./Context/Auth/AuthProvider";
 

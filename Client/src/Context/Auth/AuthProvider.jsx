@@ -86,15 +86,15 @@ export const AuthProvider = ({ children }) => {
   };
 
   // useEffect para darle un setTimeuot a la alerta y limpiarla
-  // useEffect(() => {
-  //   if (errorsRegister.length > 0) {
-  //     const timer = setTimeout(() => {
-  //       setErrorsRegister([]);
-  //     }, 3000);
+  useEffect(() => {
+    if (errorsRegister.length > 0) {
+      const timer = setTimeout(() => {
+        setErrorsRegister([]);
+      }, 1500);
 
-  //     return () => clearTimeout(timer);
-  //   }
-  // }, [errorsRegister]);
+      return () => clearTimeout(timer);
+    }
+  }, [errorsRegister]);
 
   // Funcion para verificar el token y cambiar los estados de autenticacion y redireccionamiento
   const checkToken = async () => {

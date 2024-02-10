@@ -64,9 +64,9 @@ export const Login = () => {
                   key={index}
                   iconAlert={<IconAlert />}
                   openAlert={alert}
-                  backgroundAlert={"#ef4444"}
-                  borderAlert={"#ef4444"}
-                  colorAlert={"#ef4444"}
+                  backgroundAlert={"bg-[#ef4444]/10"}
+                  borderAlert={"border-[#ef4444]"}
+                  colorAlert={"text-[#ef4444]"}
                   textAlert={error}
                 />
               ))}

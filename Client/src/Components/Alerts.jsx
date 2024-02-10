@@ -15,7 +15,7 @@ export const Alerts = ({
         <Alert
           icon={iconAlert}
           open={openAlert}
-          className={`rounded-none border-l-4 ${colorAlert} font-medium`}
+          className={`rounded-none border-l-4 ${borderAlert} ${backgroundAlert} font-medium ${colorAlert}`}
         >
           {textAlert}
         </Alert>
