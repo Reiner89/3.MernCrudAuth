@@ -20,7 +20,12 @@ import taskRoutes from "./Routes/tasks.routes.js";
 export const app = express();
 
 // Usamos cors para permitir peticiones desde cualquier puerto
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
 // Configuramos para que nuestra app use morgan
 app.use(morgan("dev"));

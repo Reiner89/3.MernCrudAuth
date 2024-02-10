@@ -1,9 +1,21 @@
 1. Para este proyecto estaremos usando los modulos:
-- express, para el servidor de aplicaciones web y manejo de solicitudes http.
--mongoose, para  la conexión a MongoDB y manipulación de documentos en ella.
--nodemon, para reiniciar automaticamente el server cuando se realizan cambios en el codigo fuente.
--morgan,  para mostrar las peticiones HTTP que llegan al server en formato de log.
--bcryptjs,  para generación de hashes de contraseñas seguras.
+
+- Parte del Backend:
+a. express, para el servidor de aplicaciones web y manejo de solicitudes http.
+b. mongoose, para  la conexión a MongoDB y manipulación de documentos en ella.
+c. nodemon, para reiniciar automaticamente el server cuando se realizan cambios en el codigo fuente.
+d. morgan,  para mostrar las peticiones HTTP que llegan al server en formato de log.
+e. bcryptjs,  para generación de hashes de contraseñas seguras.
+f. jsonwebtoken, para generación e implementación del token JWT.
+g.zod, sirve para validar los datos recibidos por el cliente antes de ser insertados o actualizados en la BD.
+h.cookie-parser, permite analizar cookies enviadas desde el cliente.
+i.cors,  permite habilitar CORS (Cross Origin Resource Sharing) para permitir peticiones cross-origin.
+
+
+- Parte del FrontEnd (React):
+a. js-cookie, para ver las cookies del cliente.
+b. axios, para hacer solicitudes http desde el frontend.
+c. react-router-dom,  para gestionar las rutas en nuestra app React.
 
 2. Ingresamos al package.json y configuramos los script para reiniciar automaticamente el server cuando se realizan cambios en el codigo fuente, para ello agregaremos "dev": "nodemon server/index.js", esto solo si hemos instalado nodemon.
 

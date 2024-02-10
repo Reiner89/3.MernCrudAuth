@@ -1,15 +1,21 @@
+// Importamos nuestro contexto
 import { AuthProvider } from "./Context/Auth/AuthProvider";
+
+// Importamos los componentes que vamos a utilizar en la aplicación
 import {
-  AddTask,
-  EditTask,
+  TaskForm,
   HomePage,
   Login,
   Profile,
   Register,
-  Tasks,
+  TasksHome,
 } from "./Pages/index";
+
 // Importamos BrowserRouter, Route y Routes de react-router-dom para la configuracion de rutas.
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+// Importamos nuestra funcion que nos ayudara a proteger las rutas
+import { ProtectedRoutes } from "./Routes/ProtectedRoutes";
 
 export const App = () => {
   return (
@@ -17,13 +23,18 @@ export const App = () => {
       <AuthProvider>
         <BrowserRouter>
           <Routes>
+            {/* Rutas que no estarán protegidas */}
             <Route path="/" element={<HomePage />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/register" element={<Register />}></Route>
-            <Route path="/profile" element={<Profile />}></Route>
-            <Route path="/tasks" element={<Tasks />}></Route>
-            <Route path="/tasks/:id" element={<EditTask />}></Route>
-            <Route path="/addTask" element={<AddTask />}></Route>
+
+            {/*  Rutas que estaran protegidas */}
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/profile" element={<Profile />}></Route>
+              <Route path="/tasks" element={<TasksHome />}></Route>
+              <Route path="/tasks/:id" element={<TaskForm />}></Route>
+              <Route path="/addTask" element={<TaskForm />}></Route>
+            </Route>
           </Routes>
         </BrowserRouter>
       </AuthProvider>

@@ -7,6 +7,7 @@ import {
   logoutRequest,
   profileRequest,
   registerRequest,
+  verifyTokenRequest,
 } from "../Controllers/AuthController.js";
 
 // Importamos la funcion que se encargara de proteger las rutas
@@ -34,6 +35,9 @@ router.post("/api/logout", logoutRequest);
 
 // Ruta para el perfil
 router.get("/api/profile", authRequired, profileRequest);
+
+// Ruta para verificar el token
+router.get("/api/verify", verifyTokenRequest);
 
 // Exportamos la variable router con todas las rutas creadas en ella
 export default router;

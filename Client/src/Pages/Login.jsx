@@ -1,10 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
-import { Button } from "@material-tailwind/react";
-import { IconEmail, IconKey } from "../Assets/Icons";
+import { Button, Alert } from "@material-tailwind/react";
+import { IconAlert, IconEmail, IconKey } from "../Assets/Icons";
 import { InputsStyle } from "./Components/InputsStyle";
 import { useState } from "react";
 import { useAuth } from "../Context/Auth/AuthProvider";
+import { useNavigate, Link } from "react-router-dom";
+import { Alerts } from "../Components/Alerts";
 
 export const Login = () => {
   // Estado para el formulario de Login
@@ -15,6 +17,9 @@ export const Login = () => {
 
   // Importamos la funcion de login de nuestro Contexto
   const { login, errorsRegister } = useAuth();
+
+  // Estado para almacenar la aparicion/desaparicion de la alerta
+  const [alert, setAlert] = useState(true);
 
   // Funcion para enviar el formulario
   const handleSubmit = async (e) => {
@@ -52,12 +57,18 @@ export const Login = () => {
           <div className="lg:w-1/2 w-full flex items-center justify-center text-center md:px-16 px-0 z-0">
             <div className="w-full py-6 z-20">
               <h1 className="my-6 text-black text-4xl font-bold">
-                Iniciar Sesión
+                Inicia Sesión
               </h1>
               {errorsRegister.map((error, index) => (
-                <div key={index} className="relative bg-red-500 p-2 my-3">
-                  {error}
-                </div>
+                <Alerts
+                  key={index}
+                  iconAlert={<IconAlert />}
+                  openAlert={alert}
+                  backgroundAlert={"#ef4444"}
+                  borderAlert={"#ef4444"}
+                  colorAlert={"#ef4444"}
+                  textAlert={error}
+                />
               ))}
               <form
                 onSubmit={handleSubmit}
@@ -89,7 +100,11 @@ export const Login = () => {
                   }
                 />
                 <div className="px-4 pb-2 pt-4 my-2">
-                  <Button type="submit" className="relative w-full">
+                  <Button
+                    type="submit"
+                    className="relative w-full"
+                    onClick={() => setAlert(true)}
+                  >
                     Sign In
                   </Button>
                 </div>
@@ -101,7 +116,13 @@ export const Login = () => {
                   </div>
                   <div className="">
                     <p className="relative text-black cursor-pointer text-xs">
-                      Don't have an account? Sign Up
+                      Don't have an account?{" "}
+                      <Link
+                        to="/register"
+                        className="relative hover:text-blue-700 hover:underline"
+                      >
+                        Sign Up
+                      </Link>
                     </p>
                   </div>
                 </div>

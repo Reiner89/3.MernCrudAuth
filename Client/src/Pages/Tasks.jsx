@@ -1,5 +1,3 @@
-export const Tasks = () => {
-  return (
-    <div>Tasks</div>
-  )
-}
+export const TasksHome = () => {
+  return <div>Lista de Task</div>;
+};

@@ -1,10 +1,7 @@
 // Archivo barril
 
 // Agregar un Task
-export * from "./AddTask";
-
-// Editar un task
-export * from "./EditTask";
+export * from "./TaskForm";
 
 // Home page
 export * from "./HomePage";

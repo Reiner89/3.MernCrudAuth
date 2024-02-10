@@ -5,7 +5,8 @@ import { IconAlert, IconEmail, IconKey, IconUser } from "../Assets/Icons";
 import { InputsStyle } from "./Components/InputsStyle";
 import { useEffect, useState } from "react";
 import { useAuth } from "../Context/Auth/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { Alerts } from "../Components/Alerts";
 
 export const Register = () => {
   // Usamos el contexto de autenticación para acceder a los valores y métodos.
@@ -49,6 +50,7 @@ export const Register = () => {
     <div className="relative">
       <section className="min-h-screen flex items-stretch text-white ">
         <div className="fondo-form lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center">
+          <div className="absolute bg-black opacity-50 inset-0 z-0"></div>
           <div className="w-full px-24 z-10">
             <h1 className="text-4xl font-bold text-left tracking-wide">
               Bienvenido a TailAdmin
@@ -65,15 +67,15 @@ export const Register = () => {
           <div className="w-full py-6 z-20">
             <h1 className="my-6 text-black text-4xl font-bold">Registrate</h1>
             {errorsRegister.map((error, index) => (
-              <div key={index}>
-                <Alert
-                  className="rounded-none border-l-4 border-[#ef4444] bg-[#ef4444]/10 font-medium text-[#ef4444]"
-                  open={alert}
-                  icon={<IconAlert />}
-                >
-                  {error}
-                </Alert>
-              </div>
+              <Alerts
+                key={index}
+                iconAlert={<IconAlert />}
+                openAlert={alert}
+                backgroundAlert={"ef4444"}
+                borderAlert={"#ef4444"}
+                colorAlert={"ef4444"}
+                textAlert={error}
+              />
             ))}
             <form
               onSubmit={handleSubmit}
@@ -129,7 +131,13 @@ export const Register = () => {
               <div className="flex w-full justify-between my-3">
                 <div className="">
                   <p className="relative text-black cursor-pointer text-xs">
-                    ¿Ya tienes una cuenta? Inicia Sesión
+                    ¿Ya tienes una cuenta?{" "}
+                    <Link
+                      to="/login"
+                      className="relative hover:text-blue-700 hover:underline"
+                    >
+                      Iniciar Sesión
+                    </Link>
                   </p>
                 </div>
               </div>

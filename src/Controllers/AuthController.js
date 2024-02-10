@@ -7,6 +7,12 @@ import bcrypt from "bcryptjs";
 // Importamos el modulo para generar un token
 import { createAccesToken } from "../Libs/JsonWebToken.js";
 
+// Importamos jason-web-token
+import jwt from "jsonwebtoken";
+
+// Importamos el token secret
+import { TOKEN_SECRET } from "../config.js";
+
 // Funcion para el registro de un nuevo usuario al entrar a la ruta
 export const registerRequest = async (req, res) => {
   // Le indicamos los valores que se van a recibir del formulario
@@ -117,5 +123,34 @@ export const profileRequest = async (req, res) => {
     email: userFound.email,
     createdAt: userFound.createdAt,
     updatedAt: userFound.updatedAt,
+  });
+};
+
+// Verificar token
+export const verifyTokenRequest = async (req, res) => {
+  // De las cookies del navegador obtenemos el token
+  const { token } = req.cookies;
+
+  //  Si no hay token retornamos un mensaje al cliente y le damos un status de 401 con un mensaje de No autorizado
+  if (!token) return res.status(401).json({ message: "Acceso no Autorizado" });
+
+  // Si hay un token lo verificamos
+  jwt.verify(token, TOKEN_SECRET, async (err, user) => {
+    // En caso de error retornamos un mensaje al cliente y status 401
+    if (err) return res.status(401).json({ message: "No Autorizado" });
+
+    // Si encontro el token significa que hay un id de un usario, buscamos este usuario en la BD
+    const userFound = await User.findById(user.id);
+
+    // Si el usuario no existe retornamos otro mensaje al cliente y status 401
+    if (!userFound)
+      return res.status(401).json({ message: "Usuario no encontrado" });
+
+    // Si todo sale bien guardamos retornamos los datos del usario
+    return res.json({
+      id: userFound._id,
+      username: userFound.username,
+      email: userFound.email,
+    });
   });
 };
