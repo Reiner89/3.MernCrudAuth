@@ -17,27 +17,30 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // Importamos nuestra funcion que nos ayudara a proteger las rutas
 import { ProtectedRoutes } from "./Routes/ProtectedRoutes";
+import { TaskProvider } from "./Context/Tasks/TaskContext";
 
 export const App = () => {
   return (
     <>
       <AuthProvider>
-        <BrowserRouter>
-          <Routes>
-            {/* Rutas que no estarán protegidas */}
-            <Route path="/" element={<HomePage />}></Route>
-            <Route path="/login" element={<Login />}></Route>
-            <Route path="/register" element={<Register />}></Route>
+        <TaskProvider>
+          <BrowserRouter>
+            <Routes>
+              {/* Rutas que no estarán protegidas */}
+              <Route path="/" element={<HomePage />}></Route>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/register" element={<Register />}></Route>
 
-            {/*  Rutas que estaran protegidas */}
-            <Route element={<ProtectedRoutes />}>
-              <Route path="/profile" element={<Profile />}></Route>
-              <Route path="/tasks" element={<TasksHome />}></Route>
-              <Route path="/tasks/:id" element={<TaskForm />}></Route>
-              <Route path="/addTask" element={<TaskForm />}></Route>
-            </Route>
-          </Routes>
-        </BrowserRouter>
+              {/*  Rutas que estaran protegidas */}
+              <Route element={<ProtectedRoutes />}>
+                <Route path="/profile" element={<Profile />}></Route>
+                <Route path="/tasks" element={<TasksHome />}></Route>
+                <Route path="/tasks/:id" element={<TaskForm />}></Route>
+                <Route path="/addtasks" element={<TaskForm />}></Route>
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </TaskProvider>
       </AuthProvider>
     </>
   );

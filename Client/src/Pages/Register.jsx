@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import { Button, Alert } from "@material-tailwind/react";
+import { Button } from "@material-tailwind/react";
 import { IconAlert, IconEmail, IconKey, IconUser } from "../Assets/Icons";
-import { InputsStyle } from "./Components/InputsStyle";
+import { InputForm } from "./Components/InputForm";
 import { useEffect, useState } from "react";
 import { useAuth } from "../Context/Auth/AuthProvider";
 import { useNavigate, Link } from "react-router-dom";
@@ -71,9 +71,9 @@ export const Register = () => {
                 key={index}
                 iconAlert={<IconAlert />}
                 openAlert={alert}
-                backgroundAlert={"ef4444"}
-                borderAlert={"#ef4444"}
-                colorAlert={"ef4444"}
+                backgroundAlert={"bg-[#ef4444]/10"}
+                borderAlert={"border-[#ef4444]"}
+                colorAlert={"text-[#ef4444]"}
                 textAlert={error}
               />
             ))}
@@ -82,7 +82,7 @@ export const Register = () => {
               className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto"
             >
               {/* Input del UserName */}
-              <InputsStyle
+              <InputForm
                 type={"text"}
                 name={"username"}
                 id={"username"}
@@ -95,7 +95,7 @@ export const Register = () => {
               />
 
               {/* Input del Email */}
-              <InputsStyle
+              <InputForm
                 type={"email"}
                 name={"email"}
                 id={"email"}
@@ -108,7 +108,7 @@ export const Register = () => {
               />
 
               {/* Input del Password */}
-              <InputsStyle
+              <InputForm
                 type={"password"}
                 name={"password"}
                 id={"password"}
