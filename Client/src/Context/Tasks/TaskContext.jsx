@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { createTaskRequest } from "../../Api/Tasks";
+import { createTaskRequest, getTasksRequest } from "../../Api/Tasks";
 
 // Creamos nuestro contexto para los tasks
 export const TaskContext = createContext();
@@ -21,6 +21,19 @@ export const TaskProvider = ({ children }) => {
   // Estado para guardar todos los tasks
   const [tasks, setTasks] = useState([]);
 
+  // Creamos la funcion async para traer todos los tasks
+  const getTasks = async () => {
+    try {
+      // Llamamos a la api y esperamos por la respuesta
+      const response = await getTasksRequest();
+
+      // Guardamos los tasks en el estado
+      setTasks(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // Creamos la funcion async para crear un task
   const createTask = async (newTask) => {
     try {
@@ -36,7 +49,7 @@ export const TaskProvider = ({ children }) => {
   };
 
   return (
-    <TaskContext.Provider value={{ createTask }}>
+    <TaskContext.Provider value={{ createTask, tasks, getTasks }}>
       {children}
     </TaskContext.Provider>
   );

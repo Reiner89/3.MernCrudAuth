@@ -65,7 +65,7 @@ export const TaskForm = () => {
             <Typography className="-mb-1" color="blue-gray" variant="h6">
               Título de la Tarea:
             </Typography>
-            <form onSubmit={handleSubmit} className="grid gap-6">
+            <form className="grid gap-6">
               <div className="relative w-full min-w-[200px] h-10">
                 <input
                   type="text"
@@ -101,7 +101,10 @@ export const TaskForm = () => {
             <button
               className="block w-full select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
               type="button"
-              onClick={handleSubmit}
+              onClick={(e) => {
+                handleSubmit(e);
+                handleOpen();
+              }}
             >
               Add New Task
             </button>

@@ -85,6 +85,18 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // Funcion que nos permite cerrar sesión
+  const logout = () => {
+    // De cookies eliminamos el token
+    Cookies.remove("token");
+
+    //  Y actualizamos el estado del usuario a null
+    setUser(null);
+
+    // Cambiamos el estado de autenticación a false
+    setIsAuthenticated(false);
+  };
+
   // useEffect para darle un setTimeuot a la alerta y limpiarla
   useEffect(() => {
     if (errorsRegister.length > 0) {
@@ -147,7 +159,15 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ signUp, login, user, isAuthenticated, errorsRegister, loading }}
+      value={{
+        signUp,
+        login,
+        logout,
+        user,
+        isAuthenticated,
+        errorsRegister,
+        loading,
+      }}
     >
       {children}
     </AuthContext.Provider>

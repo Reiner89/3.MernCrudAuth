@@ -14,7 +14,7 @@ export const getTasksRequest = async (req, res) => {
       return res.status(404).send({ message: "No se encontraron tasks" });
     } else {
       // Retornamos una lista con todos los tasks
-      return res.status(200).send({ data: tasks });
+      return res.status(200).send(tasks);
     }
   } catch (error) {
     res.status(404).send(error);

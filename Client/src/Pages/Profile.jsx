@@ -1,5 +1,13 @@
+import { Sidebar } from "../Layout/Sidebar";
+
 export const Profile = () => {
   return (
-    <div>Profile</div>
-  )
-}
+    <Sidebar
+      children={
+        <>
+          <h1>Profile</h1>
+        </>
+      }
+    />
+  );
+};

@@ -3,9 +3,9 @@
 import { Button } from "@material-tailwind/react";
 import { IconAlert, IconEmail, IconKey } from "../Assets/Icons";
 import { InputForm } from "./Components/InputForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../Context/Auth/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Alerts } from "../Components/Alerts";
 
 export const Login = () => {
@@ -16,10 +16,13 @@ export const Login = () => {
   });
 
   // Importamos la funcion de login de nuestro Contexto
-  const { login, errorsRegister } = useAuth();
+  const { login, errorsRegister, isAuthenticated } = useAuth();
 
   // Estado para almacenar la aparicion/desaparicion de la alerta
   const [alert, setAlert] = useState(true);
+
+  // Instanciamos useNavigate
+  const navigate = useNavigate();
 
   // Funcion para enviar el formulario
   const handleSubmit = async (e) => {
@@ -35,6 +38,11 @@ export const Login = () => {
       password: "",
     });
   };
+
+  // Si esta autenticado redireccionalo a /tasks
+  useEffect(() => {
+    if (isAuthenticated) navigate("/tasks");
+  }, [isAuthenticated]);
 
   return (
     <>

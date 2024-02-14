@@ -1,5 +1,13 @@
+import { Sidebar } from "../Layout/Sidebar";
+
 export const HomePage = () => {
   return (
-    <div>HomePage</div>
-  )
-}
+    <Sidebar
+      children={
+        <>
+          <h1>Welcome to the home page!</h1>
+        </>
+      }
+    />
+  );
+};

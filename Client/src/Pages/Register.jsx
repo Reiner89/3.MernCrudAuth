@@ -27,7 +27,7 @@ export const Register = () => {
 
   // Si el usuario esta autenticado que lo dirija a la pagina principal
   useEffect(() => {
-    if (isAuthenticated) navigate("/");
+    if (isAuthenticated) navigate("/tasks");
   }, [isAuthenticated]);
 
   // Funcion para cargar el formulario
